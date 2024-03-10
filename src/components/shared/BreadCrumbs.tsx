@@ -25,7 +25,9 @@ export default function BreadCrumbs({ links }: { links: BreadCrumbsProps[] }) {
               </Typography>
             ) : (
               <Link href={href} key={index}>
-                <Typography variant="body2">{name}</Typography>
+                <Typography variant="body2" className="!underline">
+                  {name}
+                </Typography>
               </Link>
             )
           )}
