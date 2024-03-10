@@ -24,11 +24,15 @@ export default function BreadCrumbs({ links }: { links: BreadCrumbsProps[] }) {
                 {name}
               </Typography>
             ) : (
-              <Link href={href} key={index}>
-                <Typography variant="body2" className="!underline">
-                  {name}
-                </Typography>
-              </Link>
+              <Typography
+                key={index}
+                component={"a"}
+                variant="body2"
+                className="!underline"
+                href={href}
+              >
+                {name}
+              </Typography>
             )
           )}
         </Breadcrumbs>
