@@ -8,6 +8,7 @@ import {
 } from "@mui/icons-material";
 import {
   AppBar,
+  Badge,
   IconButton,
   InputBase,
   Menu,
@@ -175,7 +176,9 @@ export default function Header() {
               size="small"
               className="!text-primary"
             >
-              <ShoppingCart />
+              <Badge badgeContent={20} color="success">
+                <ShoppingCart />
+              </Badge>
             </IconButton>
             <IconButton
               LinkComponent={Link}

@@ -181,7 +181,51 @@ export default function Footer() {
               @SHOP.CO 2000 - 20002 | All Rights Reserved
             </Typography>
             <div className="flex flex-wrap justify-center gap-3">
-              <Link href={"#"}></Link>
+              <div className="aspect-[16/10] overflow-hidden bg-white w-14 rounded">
+                <Image
+                  src={"/applepay.svg"}
+                  alt="Apple Pay"
+                  width={60}
+                  height={40}
+                  className="!w-full !h-full mix-blend-multiply object-cover"
+                />
+              </div>
+              <div className="aspect-[16/10] overflow-hidden bg-white w-14 rounded">
+                <Image
+                  src={"/paypal.svg"}
+                  alt="Paypal"
+                  width={60}
+                  height={40}
+                  className="!w-full !h-full mix-blend-multiply object-cover"
+                />
+              </div>
+              <div className="aspect-[16/10] overflow-hidden bg-white w-14 rounded">
+                <Image
+                  src={"/amex.svg"}
+                  alt="amex"
+                  width={60}
+                  height={40}
+                  className="!w-14 !h-full mix-blend-multiply object-cover"
+                />
+              </div>
+              <div className="aspect-[16/10] overflow-hidden bg-white w-14 rounded">
+                <Image
+                  src={"/visa.svg"}
+                  alt="Visa"
+                  width={60}
+                  height={40}
+                  className="!w-14 !h-full mix-blend-multiply object-cover"
+                />
+              </div>
+              <div className="aspect-[16/10] overflow-hidden bg-white w-14 rounded">
+                <Image
+                  src={"/mastercard.svg"}
+                  alt="Master"
+                  width={60}
+                  height={40}
+                  className="!w-14 !h-full mix-blend-multiply object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
