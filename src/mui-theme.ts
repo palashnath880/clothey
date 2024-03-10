@@ -1,9 +1,11 @@
 "use client";
 
-import { Oswald } from "next/font/google";
+import { Oswald, Bitter } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
 
 const oswald = Oswald({ subsets: ["latin"] });
+
+const bitter = Bitter({ subsets: ["latin"] });
 
 export const myTheme = createTheme({
   typography: {
@@ -25,6 +27,7 @@ export const myTheme = createTheme({
     h6: {
       fontFamily: oswald.style.fontFamily,
     },
+    fontFamily: bitter.style.fontFamily,
   },
   palette: {
     primary: {

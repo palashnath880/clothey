@@ -3,9 +3,9 @@ import Link from "next/link";
 import React from "react";
 
 interface BreadCrumbsProps {
-  href?: string;
+  href?: string | undefined;
   name: string;
-  active?: boolean;
+  active?: boolean | undefined;
 }
 
 export default function BreadCrumbs({ links }: { links: BreadCrumbsProps[] }) {
@@ -25,7 +25,7 @@ export default function BreadCrumbs({ links }: { links: BreadCrumbsProps[] }) {
               </Typography>
             ) : (
               <Link href={href} key={index}>
-                {name}
+                <Typography variant="body2">{name}</Typography>
               </Link>
             )
           )}

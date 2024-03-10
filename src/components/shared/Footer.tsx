@@ -6,6 +6,7 @@ import {
   X,
 } from "@mui/icons-material";
 import { Button, InputAdornment, TextField, Typography } from "@mui/material";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -117,9 +118,15 @@ export default function Footer() {
           <div className="grid grid-cols-11 gap-5">
             <div className="col-span-3">
               <div className="flex flex-col gap-4">
-                <Typography variant="h4" fontWeight={800}>
-                  SHOP.CO
-                </Typography>
+                <Link href={"/"}>
+                  <Image
+                    alt="logo"
+                    src={"/clothey-logo.png"}
+                    width={300}
+                    height={250}
+                    className="!w-40 !h-auto"
+                  />
+                </Link>
                 <Typography variant="body2">
                   We have clothes that suits your style and which {"you're"}{" "}
                   proud to wear. From women to men
