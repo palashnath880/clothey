@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import Image from "next/image";
 import React from "react";
 
 export default function StylesArea() {
@@ -23,22 +24,45 @@ export default function StylesArea() {
               >
                 Casual
               </Typography>
+              <div className="absolute top-0 right-0 w-auto !h-full pr-2">
+                <Image
+                  src={"/casual-dress.png"}
+                  alt="Formal dress"
+                  width={500}
+                  height={300}
+                  className="!w-auto !h-full !ml-auto"
+                />
+              </div>
             </div>
-            <div className="bg-white rounded-xl col-span-5 relative  aspect-[16/5]">
+            <div className="bg-white rounded-xl col-span-5 relative aspect-[16/6]">
               <Typography
                 variant="h5"
                 className="!absolute !top-4 !left-5 !font-semibold"
               >
                 Formal
               </Typography>
+              <Image
+                src={"/formal-dress.png"}
+                alt="Formal dress"
+                width={500}
+                height={300}
+                className="!w-auto !h-full !ml-auto mr-2"
+              />
             </div>
-            <div className="bg-white rounded-xl col-span-5 relative  aspect-[16/5]">
+            <div className="bg-white rounded-xl col-span-5 relative aspect-[16/6]">
               <Typography
                 variant="h5"
                 className="!absolute !top-4 !left-5 !font-semibold"
               >
                 Party
               </Typography>
+              <Image
+                src={"/party-dress.png"}
+                alt="Party dress"
+                width={500}
+                height={300}
+                className="!w-auto !h-full !ml-auto mr-2"
+              />
             </div>
             <div className="bg-white rounded-xl col-span-3 relative ">
               <Typography
@@ -47,6 +71,15 @@ export default function StylesArea() {
               >
                 GYM
               </Typography>
+              <div className="absolute top-0 right-0 w-auto !h-full pr-2">
+                <Image
+                  src={"/gym-dress.png"}
+                  alt="Formal dress"
+                  width={500}
+                  height={300}
+                  className="!w-auto !h-full !ml-auto"
+                />
+              </div>
             </div>
           </div>
         </div>

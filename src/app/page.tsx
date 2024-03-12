@@ -5,6 +5,7 @@ import StylesArea from "@/components/Home/StylesArea";
 import TopSelling from "@/components/Home/TopSelling";
 import { ShoppingCart } from "@mui/icons-material";
 import { Button, Typography } from "@mui/material";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 

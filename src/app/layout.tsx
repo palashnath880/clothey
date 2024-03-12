@@ -6,6 +6,8 @@ import Header from "@/components/shared/Header";
 import { ThemeProvider } from "@mui/material/styles";
 import { myTheme } from "@/mui-theme";
 import { Bitter } from "next/font/google";
+import "swiper/css";
+import NextAuthSessionProvider from "@/session-provider";
 
 export const metadata: Metadata = {
   title: "Clothey",
@@ -24,9 +26,11 @@ export default function RootLayout({
       <body className={bitter.className}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={myTheme}>
-            <Header />
-            {children}
-            <Footer />
+            <NextAuthSessionProvider>
+              <Header />
+              {children}
+              <Footer />
+            </NextAuthSessionProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

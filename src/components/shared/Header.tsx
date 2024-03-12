@@ -2,7 +2,10 @@
 
 import {
   KeyboardArrowDown,
+  Login,
+  Logout,
   Person,
+  PersonAddAlt,
   Search,
   ShoppingCart,
 } from "@mui/icons-material";
@@ -11,6 +14,8 @@ import {
   Badge,
   IconButton,
   InputBase,
+  ListItemIcon,
+  ListItemText,
   Menu,
   MenuItem,
   Toolbar,
@@ -22,6 +27,8 @@ import { styled } from "@mui/material/styles";
 import Link from "next/link";
 import PopupState, { bindMenu, bindTrigger } from "material-ui-popup-state";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 const SearchField = styled("div")(({ theme }) => ({
   borderRadius: "9999px",
@@ -45,6 +52,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Header() {
+  // router hooks
+  const router = useRouter();
+
+  // auth session
+  const { data: session } = useSession();
+
   const menusArr = [
     {
       path: "/",
@@ -180,14 +193,94 @@ export default function Header() {
                 <ShoppingCart />
               </Badge>
             </IconButton>
-            <IconButton
-              LinkComponent={Link}
-              size="small"
-              className="!text-primary"
-              href="/my-account"
-            >
-              <Person />
-            </IconButton>
+
+            {/* user button */}
+            <PopupState variant="popover">
+              {(popupState) => (
+                <>
+                  <IconButton
+                    size="medium"
+                    className="!text-primary"
+                    {...bindTrigger(popupState)}
+                  >
+                    <Person />
+                  </IconButton>
+                  <Menu
+                    {...bindMenu(popupState)}
+                    anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                    transformOrigin={{
+                      horizontal: "right",
+                      vertical: "top",
+                    }}
+                  >
+                    {session && (
+                      <>
+                        <MenuItem
+                          className="!py-2.5"
+                          onClick={() => {
+                            router.push("/my-account");
+                            popupState.close();
+                          }}
+                        >
+                          <ListItemIcon>
+                            <Person fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText>
+                            <Typography variant="body2">My Account</Typography>
+                          </ListItemText>
+                        </MenuItem>
+                        <MenuItem
+                          className="!py-2.5"
+                          onClick={() => {
+                            signOut();
+                            popupState.close();
+                          }}
+                        >
+                          <ListItemIcon>
+                            <Logout fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText>
+                            <Typography variant="body2">Logout</Typography>
+                          </ListItemText>
+                        </MenuItem>
+                      </>
+                    )}
+                    {!session && (
+                      <>
+                        <MenuItem
+                          className="!py-2.5"
+                          onClick={() => {
+                            router.push("/login");
+                            popupState.close();
+                          }}
+                        >
+                          <ListItemIcon>
+                            <Login fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText>
+                            <Typography variant="body2">Login</Typography>
+                          </ListItemText>
+                        </MenuItem>
+                        <MenuItem
+                          className="!py-2.5"
+                          onClick={() => {
+                            router.push("/register");
+                            popupState.close();
+                          }}
+                        >
+                          <ListItemIcon>
+                            <PersonAddAlt fontSize="small" />
+                          </ListItemIcon>
+                          <ListItemText>
+                            <Typography variant="body2">Register</Typography>
+                          </ListItemText>
+                        </MenuItem>
+                      </>
+                    )}
+                  </Menu>
+                </>
+              )}
+            </PopupState>
           </div>
         </div>
       </Toolbar>
