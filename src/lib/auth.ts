@@ -1,6 +1,8 @@
 import { NextAuthOptions, RequestInternal } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import jwt from "jsonwebtoken";
+import EmailProvider from "next-auth/providers/email";
+import prisma from "./prisma";
+import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,12 +16,31 @@ export const authOptions: NextAuthOptions = {
         credentials: Record<"email" | "password", string> | undefined,
         req: Pick<RequestInternal, "body" | "query" | "headers" | "method">
       ): Promise<any> {
-        const user = { email: credentials?.email };
-        if (!user) {
-          throw new Error("Invalid email or password");
+        const user = {
+          email: credentials?.email || "",
+          password: credentials?.password || "",
+        };
+
+        if (!user.email || !user.password) {
+          throw new Error("Sorry! Something went wrong");
         }
 
-        return user;
+        // get user by email
+        const getUser = await prisma.user.findUnique({
+          where: { email: user.email },
+        });
+
+        if (!getUser) {
+          // return the not found error message
+          throw new Error("User Not Found");
+        }
+
+        // verify password
+        if (await bcrypt.compare(user.password, getUser.password)) {
+          return { ...getUser, password: null };
+        } else {
+          throw new Error("Invalid email or password");
+        }
       },
     }),
   ],
